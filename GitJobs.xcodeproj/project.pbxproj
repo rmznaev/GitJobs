@@ -83,8 +83,8 @@
 		C4B8399E25E796AB004A680A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C4B839AC25E7BD5B004A680A /* Cell */,
 				C4B839A625E79CB3004A680A /* MainViewController.swift */,
+				C4B839AC25E7BD5B004A680A /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
