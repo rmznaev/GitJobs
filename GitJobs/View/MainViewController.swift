@@ -11,9 +11,9 @@ class MainViewController: UIViewController {
     
     private let tableCellID = "tableCellID"
     
-    let jobs = [Job(created_at: "", company: "", location: "", title: "iOS Developer"),
-                Job(created_at: "", company: "", location: "", title: "Android Developer"),
-                Job(created_at: "", company: "", location: "", title: "Backend Developer")]
+    let jobs = [Job(created_at: "27.11.2019", company: "Bank Respublika", location: "Baku, Azerbaijan", title: "iOS Developer"),
+                Job(created_at: "12.03.2020", company: "Instagram", location: "Cupertino, California", title: "Android Developer"),
+                Job(created_at: "01.01.2021", company: "Facebook", location: "Silicon Valley, California", title: "Backend Developer")]
     
     let searchBar = UISearchBar()
     
@@ -80,6 +80,16 @@ class MainViewController: UIViewController {
         showSearchBarButton(shouldShow: true)
         
         view.addSubview(tableView)
+        
+//        tableView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+        
         tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 0, enableInsets: false)
     }
 
@@ -93,9 +103,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath) as! JobCell
         cell.job = jobs[indexPath.row]
-        
-//        let borderColor: UIColor = (jobs[indexPath.row] == "inStock") ? .red : .green
-//        cell.layer.borderColor = borderColor.cgColor
         
         return cell
     }

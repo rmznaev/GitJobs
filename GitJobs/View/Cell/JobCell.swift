@@ -29,9 +29,22 @@ class JobCell: UITableViewCell {
         }
     }
     
+    var cellView: UIView = {
+        let view = UIView()
+        let borderColor: UIColor = .black
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 0.5
+        view.layer.shadowOffset = CGSize(width: -1, height: 1)
+        view.layer.borderColor = borderColor.cgColor
+        view.backgroundColor = .lightGray
+        
+        return view
+    }()
+    
     var jobLogo: UIImageView = {
         let image = UIImageView(image: nil)
-        image.backgroundColor = .lightGray
+        image.backgroundColor = .darkGray
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         
@@ -40,7 +53,7 @@ class JobCell: UITableViewCell {
     
     var jobTitle: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .left
         label.text = "iOS Software Engineer"
         label.textColor = .black
@@ -50,7 +63,7 @@ class JobCell: UITableViewCell {
     
     var companyName: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .left
         label.text = "Bank Respublika"
         label.textColor = .black
@@ -60,7 +73,7 @@ class JobCell: UITableViewCell {
     
     var jobLocation: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .left
         label.text = "Baku, Azerbaijan"
         label.textColor = .black
@@ -89,19 +102,23 @@ class JobCell: UITableViewCell {
     }
     
     private func configureUI() {
+        self.addSubview(cellView)
         self.addSubview(jobLogo)
         self.addSubview(jobTitle)
         self.addSubview(companyName)
         self.addSubview(jobLocation)
         self.addSubview(createdDate)
         
-        self.layer.masksToBounds = true
-        self.layer.cornerRadius = 5
-        self.layer.borderWidth = 0.5
-        self.layer.shadowOffset = CGSize(width: -1, height: 1)
-        let borderColor: UIColor = .black
-        self.layer.borderColor = borderColor.cgColor
+        cellView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 10, paddingLeft: 5, paddingBottom: 10, paddingRight: 5, width: 0, height: 0, enableInsets: false)
         
-        jobLogo.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 80, enableInsets: false)
+        jobLogo.anchor(top: cellView.topAnchor, left: cellView.leftAnchor, bottom: nil, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 0, width: 80, height: 80, enableInsets: false)
+        
+        jobTitle.anchor(top: cellView.topAnchor, left: jobLogo.rightAnchor, bottom: nil, right: cellView.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 16, enableInsets: false)
+        
+        companyName.anchor(top: jobTitle.bottomAnchor, left: jobLogo.rightAnchor, bottom: nil, right: cellView.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 14, enableInsets: false)
+        
+        jobLocation.anchor(top: companyName.bottomAnchor, left: jobLogo.rightAnchor, bottom: nil, right: cellView.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 12, enableInsets: false)
+        
+        createdDate.anchor(top: jobLocation.bottomAnchor, left: jobLogo.rightAnchor, bottom: nil, right: cellView.rightAnchor, paddingTop: 5, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 0, height: 12, enableInsets: false)
     }
 }
